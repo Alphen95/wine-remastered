@@ -113,25 +113,28 @@
             </p>
           </div>
         </div>
-        {% for drink_type in wine_cards%}
+        {% for wine_type in wine_cards.items()%}
           <div class="col-12 section-title text-center mb-5">
-            <h2 class="d-block">{{drink_type}}</h2>
+            <h2 class="d-block">{{wine_type[0]}}</h2>
           </div>
         
           <div class="row">
-            {% for wine in wine_cards[drink_type] %}
+            {% for wine in wine_type[1] %}
               <div class="col-lg-4 mb-5 col-md-6">
                 <div class="wine_v_1 text-center pb-4 pt-5">
-                  <img src="{{wine.picture}}" alt="Image" class="img-fluid">
-                  {% if wine.stock != ' ' %}
+                  <img src="images/{{wine.Картинка}}" alt="Image" class="img-fluid">
+                  {% if wine.Акция == "None" %}
                   {% else %}
                     <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
                   {% endif %}
                   <div>
-                    <h3 class="heading mt-3 mb-3 text-dark">{{wine.name}}</h3>
+                    <h3 class="heading mt-3 mb-3 text-dark">{{wine.Название}}</h3>
                     <p>
-                      {{wine.class}}<br/>
-                      <span class="price">{{wine.cost}}</span>
+                      {% if wine.Сорт == "None" %}
+                      {% else %}
+                        Сорт вина - {{wine.Сорт}}<br/>
+                      {% endif %}
+                      <span class="price">{{wine.Цена}} р.</span>
                     </p>
                   </div>
                 </div>
